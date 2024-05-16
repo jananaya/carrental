@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  booking_service_pgsql:
+    image: postgres:latest
+    container_name: booking_service_pgsql
+    environment:
+      POSTGRES_DB: booking_service_db
+      POSTGRES_USER: booking_user
+      POSTGRES_PASSWORD: booking_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - booking_service_data:/var/lib/postgresql/data
+
+  payment_service_pgsql:
+    image: postgres:latest
+    container_name: payment_service_pgsql
+    environment:
+      POSTGRES_DB: payment_service_db
+      POSTGRES_USER: payment_user
+      POSTGRES_PASSWORD: payment_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - payment_service_data:/var/lib/postgresql/data
+
+  car_inventory_service_pgsql:
+    image: postgres:latest
+    container_name: car_inventory_service_pgsql
+    environment:
+      POSTGRES_DB: car_inventory_service_db
+      POSTGRES_USER: car_inventory_user
+      POSTGRES_PASSWORD: car_inventory_password
+    ports:
+      - "5434:5432"
+    volumes:
+      - car_inventory_service_data:/var/lib/postgresql/data
+
+volumes:
+  booking_service_data:
+  payment_service_data:
+  car_inventory_service_data:

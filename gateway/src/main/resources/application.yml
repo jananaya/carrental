@@ -1,0 +1,22 @@
+server:
+  port: 3000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: payments
+            uri: http://localhost:8080/api/payments
+            predicates:
+              - Path=/api/payments/**
+          - id: cars
+            uri: http://localhost:8081/api/cars
+            predicates:
+              - Path=/api/cars/**
+          - id: bookings
+            uri: http://localhost:8082/api/bookings
+            predicates:
+              - Path=/api/bookings/**
